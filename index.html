@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coding Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true">&lt;/&gt;</span> Coding Academy</div>
+  <nav class="tabs" role="tablist" aria-label="Tampilan">
+    <button role="tab" id="tab-gallery" aria-selected="true" aria-controls="view-gallery">Gallery</button>
+    <button role="tab" id="tab-daftar" aria-selected="false" aria-controls="view-daftar">Pendaftaran</button>
+  </nav>
+</header>
+
+<main>
+  <!-- TAMPILAN 1: GALLERY -->
+  <section class="view" id="view-gallery" role="tabpanel" aria-labelledby="tab-gallery">
+    <div class="hero">
+      <div>
+        <h1>Belajar ngoding, <mark>langsung</mark> dikerjakan bareng.</h1>
+        <p class="lead">Pelatihan pemrograman untuk pemula sampai menengah, dengan mentor yang mendampingi setiap sesi praktik.</p>
+        <div class="cta">
+          <button class="btn primary" data-go="daftar">Daftar sekarang</button>
+          <a class="btn ghost" href="#galeri-kegiatan">Lihat kegiatan</a>
+        </div>
+      </div>
+      <div class="editor" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre id="typed"></pre>
+      </div>
+    </div>
+
+    <div class="section-head" id="galeri-kegiatan">
+      <div>
+        <h2>Kegiatan pelatihan kami</h2>
+      </div>
+      <p>Dokumentasi dari kelas, workshop, dan acara yang sudah berjalan di Coding Academy.</p>
+    </div>
+    <div class="grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- TAMPILAN 2: PENDAFTARAN -->
+  <section class="view" id="view-daftar" role="tabpanel" aria-labelledby="tab-daftar" hidden>
+    <div class="reg">
+      <div class="intro">
+        <h1>Daftar kelas Coding Academy</h1>
+        <p>Isi data diri dan pilih bahasa pemrograman yang ingin Anda pelajari. Tim kami akan menghubungi lewat nomor HP.</p>
+        <ul class="perks">
+          <li>Kelas kecil, maksimal 15 peserta</li>
+          <li>Praktik langsung di setiap pertemuan</li>
+          <li>Sertifikat setelah proyek akhir</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <form id="formDaftar" novalidate>
+          <div class="field" data-for="nik">
+            <label for="nik">NIK</label>
+            <input type="text" id="nik" name="nik" inputmode="numeric" maxlength="16" autocomplete="off" placeholder="16 digit angka">
+            <span class="hint">Nomor Induk Kependudukan, 16 digit.</span>
+            <span class="error" role="alert"></span>
+          </div>
+
+          <div class="field" data-for="nama">
+            <label for="nama">Nama lengkap</label>
+            <input type="text" id="nama" name="nama" autocomplete="name" placeholder="Sesuai KTP">
+            <span class="error" role="alert"></span>
+          </div>
+
+          <div class="field" data-for="gender">
+            <span class="legend" id="lblGender">Jenis kelamin</span>
+            <div class="radios" role="radiogroup" aria-labelledby="lblGender">
+              <label><input type="radio" name="gender" value="Laki-laki"> Laki-laki</label>
+              <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+            </div>
+            <span class="error" role="alert"></span>
+          </div>
+
+          <div class="field" data-for="hp">
+            <label for="hp">No HP</label>
+            <input type="tel" id="hp" name="hp" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx">
+            <span class="error" role="alert"></span>
+          </div>
+
+          <div class="field" data-for="alamat">
+            <label for="alamat">Alamat</label>
+            <textarea id="alamat" name="alamat" autocomplete="street-address" placeholder="Jalan, nomor, kelurahan, kota"></textarea>
+            <span class="error" role="alert"></span>
+          </div>
+
+          <div class="field" data-for="bahasa">
+            <label for="bahasa">Bahasa pemrograman yang diminati</label>
+            <select id="bahasa" name="bahasa">
+              <option value="">Pilih salah satu</option>
+              <option>Python</option>
+              <option>JavaScript</option>
+              <option>Java</option>
+              <option>PHP</option>
+              <option>C++</option>
+              <option>Dart (Flutter)</option>
+            </select>
+            <span class="error" role="alert"></span>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Simpan</button>
+            <button type="reset" class="btn ghost" id="btnReset">Kosongkan form</button>
+          </div>
+        </form>
+
+        <div class="result" id="result" hidden aria-live="polite">
+          <div class="ok">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l3 3 5-6"/></svg>
+            Data berhasil disimpan
+          </div>
+          <dl id="resultList"></dl>
+          <div class="actions">
+            <button class="btn primary" id="btnBaru">Daftarkan peserta lain</button>
+            <button class="btn ghost" data-go="gallery">Kembali ke gallery</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer></footer>
+
+<!-- Dialog konfirmasi -->
+<div class="overlay" id="overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <h2 id="dlgTitle">Apakah Anda sudah yakin untuk menyimpan?</h2>
+    <p>Pastikan seluruh data yang Anda isi sudah benar.</p>
+    <div class="actions">
+      <button class="btn ghost" id="btnTidak">Tidak</button>
+      <button class="btn primary" id="btnYa">Ya</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
